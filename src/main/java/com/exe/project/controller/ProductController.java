@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
 public class ProductController {
 
     @Autowired
@@ -21,9 +20,13 @@ public class ProductController {
     @Autowired
     private ProductJpaService productJpaService;
 
+    @PostMapping("/create")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product createdProduct = productService.createProduct(product);
-        return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
+        System.out.println("Product: " + product.getNamaBarang());
+        System.out.println("Harga: " + product.getHargaBarang());
+        System.out.println("Stock: " + product.getStok());
+    Product createdProduct = productService.createProduct(product);
+    return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 
     //CRUD
