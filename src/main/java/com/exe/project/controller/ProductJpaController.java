@@ -18,10 +18,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductJpaController {
 
-    private static final int List = 0;
-
-    private static final int Product = 0;
-
     private final ProductJpaService productJpaService;
 
     @GetMapping("/Jpa/deleteAllByIdInBatch")
@@ -88,7 +84,7 @@ public class ProductJpaController {
     public Product getReferenceById(Long id) {
 
         return productJpaService.getReferenceById(id);
-        
+
     }
 
     @GetMapping("/Jpa/saveAllAndFlush")
