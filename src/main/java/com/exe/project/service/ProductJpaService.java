@@ -2,6 +2,8 @@ package com.exe.project.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.exe.project.model.Product;
@@ -39,18 +41,18 @@ public class ProductJpaService {
 
     // }
 
-    // public <S extends Product> List <S> findAll(Example <Product> example){
+    public <S extends Product> List <Product> findAll(Example <Product> example){
 
-    //     return productJpaRep.findAll(example);
+        return productJpaRep.findAll(example);
 
-    // }
+    }
 
-    // public <S extends Product> List <S> findAll(Example<Product> example, Sort sort){
+    public List<Product> findAll(Example<Product> example, Sort sort) {
 
-    //     return productJpaRep.findAll(example, sort);
+        return productJpaRep.findAll(example, sort);
 
-    // }
-
+    }
+    
     public void flush(){
 
         productJpaRep.flush();
@@ -68,14 +70,20 @@ public class ProductJpaService {
     // }
 
     public Product getReferenceById(Long id){
+
         return productJpaRep.getReferenceById(id);
+
     }
 
     public <S extends Product> List<S> saveAllAndFlush(Iterable<S> namaBarang){
+
         return productJpaRep.saveAllAndFlush(namaBarang);
+
     }
 
     public <S extends Product> S saveAndFlush(S namaBarang){
+
         return productJpaRep.saveAndFlush(namaBarang);
+        
     }
 }
