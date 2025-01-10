@@ -1,29 +1,81 @@
 package com.exe.project.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exe.project.model.Product;
-import com.exe.project.repository.ProductJpaRepository;
+import com.exe.project.repository.ProductJpaRep;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ProductJpaService {
     
-    @Autowired
-    private ProductJpaRepository productJpaRepository;
+    private final ProductJpaRep productJpaRep;
 
-    public Product createProduct(Product product) {
-        return productJpaRepository.save(product);
+    public void deleteAllByIdInBatch(Iterable<Long> ids){
+
+        productJpaRep.deleteAllByIdInBatch(ids);
+
+    }
+    
+    public void deleteAllInBatch(){
+
+        productJpaRep.deleteAllInBatch();
+
     }
 
-    public List<Product> getAllProducts() {
-        return (List<Product>) productJpaRepository.findAll();
+    public void deleteAllInBatch(Iterable<Product> namaBarang){
+
+        productJpaRep.deleteAllInBatch(namaBarang);
+
     }
 
-    public Optional<Product> getProductById(Long id) {
-        return productJpaRepository.findById(id);
+    // public void deleteInBatch(Iterable<Product> namaBarang){
+
+    //     productJpaRep.deleteInBatch(namaBarang);
+
+    // }
+
+    // public <S extends Product> List <S> findAll(Example <Product> example){
+
+    //     return productJpaRep.findAll(example);
+
+    // }
+
+    // public <S extends Product> List <S> findAll(Example<Product> example, Sort sort){
+
+    //     return productJpaRep.findAll(example, sort);
+
+    // }
+
+    public void flush(){
+
+        productJpaRep.flush();
+
+    }
+
+    // use getReferenceById instead
+    // public Product getById(Long id){
+    //     return productJpaRep.getById(id);
+    // }
+
+    // use getReferenceById instead
+    // public Product getOne(Long id){
+    //     return productJpaRep.getOne(id);
+    // }
+
+    public Product getReferenceById(Long id){
+        return productJpaRep.getReferenceById(id);
+    }
+
+    public <S extends Product> List<S> saveAllAndFlush(Iterable<S> namaBarang){
+        return productJpaRep.saveAllAndFlush(namaBarang);
+    }
+
+    public <S extends Product> S saveAndFlush(S namaBarang){
+        return productJpaRep.saveAndFlush(namaBarang);
     }
 }
